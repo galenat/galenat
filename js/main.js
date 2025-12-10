@@ -6,26 +6,35 @@ navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Scroll suave y resaltar sección activa (solo para enlaces internos)
+// Scroll suave si estás en el home, redirección si estás fuera
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', e => {
       const href = link.getAttribute('href');
 
-      // Si es una URL absoluta (https://galenat.com/#...), dejamos que navegue
-      if (href.startsWith('http')) {
-          return;
+      // Solo manejar los anchors (#inicio, #experiencias, etc)
+      if (!href.startsWith('/#')) return;
+
+      e.preventDefault(); // evitar navegación normal
+
+      const anchor = href.replace('/',''); // convierte "/#experiencias" en "#experiencias"
+
+      // Detectar si estamos en el home
+      const isHome =
+        location.pathname === "/" ||
+        location.pathname === "/index.html";
+
+      if (isHome) {
+          // Scroll suave
+          const target = document.querySelector(anchor);
+          if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+          }
+      } else {
+          // Redirige al home con el anchor
+          window.location.href = "https://galenat.com/" + anchor;
       }
 
-      // Si es un anchor interno (#inicio, #nosotros, etc), evitar navegación normal
-      e.preventDefault();
-
-      // Hacer scroll suave a la sección
-      const target = document.querySelector(href);
-      if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      // Cerrar menú móvil
+      // Cerrar menú móvil en móvil
       navLinks.classList.remove('active');
   });
 });
