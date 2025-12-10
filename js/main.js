@@ -16,7 +16,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
       e.preventDefault(); // evitar navegación normal
 
-      const anchor = href.replace('/',''); // convierte "/#experiencias" en "#experiencias"
+      const anchor = href.replace('/', ''); // "/#experiencias" → "#experiencias"
 
       // Detectar si estamos en el home
       const isHome =
@@ -28,10 +28,15 @@ document.querySelectorAll('.nav-links a').forEach(link => {
           const target = document.querySelector(anchor);
           if (target) {
               target.scrollIntoView({ behavior: 'smooth' });
+
+              // 👇 Ocultar hash después del scroll
+              setTimeout(() => {
+                  history.replaceState(null, "", "/");
+              }, 400);
           }
       } else {
-          // Redirige al home con el anchor
-          window.location.href = "https://galenat.com/" + anchor;
+          // Redirige al home con el anchor pero sin mostrar index.html
+          window.location.href = "/" + anchor;
       }
 
       // Cerrar menú móvil en móvil
