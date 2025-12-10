@@ -23,3 +23,21 @@ form.addEventListener('submit', e => {
   document.querySelector('.confirmation').style.display = 'block';
   form.reset();
 });
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+
+        // Si es una URL absoluta, no intentar hacer scroll
+        if (href.startsWith('http')) return;
+
+        // Evitar la navegación normal
+        e.preventDefault();
+
+        // Scroll hacia la sección
+        const section = document.querySelector(href);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
