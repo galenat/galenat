@@ -3,11 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envíos y Devoluciones - Galenat</title>
+    <title>GALENAT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
     <style>
         body { font-family:'Inter',sans-serif; margin:0; padding:0; background:#FFF3E6; color:#333; }
+        header {
+            background: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #00bf63;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .nav-links a:hover { color: #00bf63; }
+
+        /* Móvil */
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media(max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 20px;
+            }
+            .nav-links.active { display: flex; }
+        }
+
         .container { max-width:900px; margin:50px auto; background:#fff; padding:40px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
         h1 { color:#00bf63; font-weight:700; font-size:2.2rem; margin-bottom:20px; }
         h2 { color:#00bf63; font-weight:600; margin-top:30px; margin-bottom:15px; display:flex; align-items:center; gap:10px; }
@@ -15,21 +63,36 @@
         ul { margin-left:20px; margin-bottom:15px; }
         li { margin-bottom:10px; }
         .icon { color:#00bf63; }
-        a { color:#FF6F3C; text-decoration:none; }
-        a:hover { text-decoration:underline; }
-        hr { border:none; border-top:2px solid #FF6F3C; margin:40px 0; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1><i class="fas fa-truck icon"></i> Envíos y Devoluciones</h1>
-        <p>En Galenat los servicios corresponden a actividades de turismo activo, por lo que no existen envíos físicos de productos.</p>
 
-        <h2><i class="fas fa-undo icon"></i> Cancelaciones y devoluciones</h2>
-        <ul>
-            <li>El usuario podrá cancelar su reserva con al menos 7 días de antelación.</li>
-            <li>En caso de cancelación por parte de Galenat (condiciones meteorológicas adversas u otros motivos), se ofrecerá una nueva fecha o el reembolso total.</li>
-        </ul>
-    </div>
+<body>
+
+<header>
+    <div class="logo">GALENAT</div>
+
+    <i class="fas fa-bars nav-toggle"></i>
+
+    <ul class="nav-links">
+        <li><a href="/#inicio">Inicio</a></li>
+        <li><a href="/#experiencias">Experiencias</a></li>
+        <li><a href="/#nosotros">Nosotros</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <h1><i class="fas fa-truck icon"></i> Envíos y Devoluciones</h1>
+    <p>En Galenat los servicios corresponden a actividades de turismo activo, por lo que no existen envíos físicos de productos.</p>
+
+    <h2><i class="fas fa-undo icon"></i> Cancelaciones y devoluciones</h2>
+    <ul>
+        <li>El usuario podrá cancelar su reserva con al menos 7 días de antelación.</li>
+        <li>En caso de cancelación por parte de Galenat (condiciones meteorológicas adversas u otros motivos), se ofrecerá una nueva fecha o el reembolso total.</li>
+    </ul>
+</div>
+
+<script src="/main.js"></script>
+
 </body>
 </html>
