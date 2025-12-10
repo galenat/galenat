@@ -1,18 +1,32 @@
 // Menú móvil toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Scroll suave y resaltar sección activa
-const links = document.querySelectorAll('.nav-links a');
-links.forEach(link => {
+// Scroll suave y resaltar sección activa (solo para enlaces internos)
+document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    target.scrollIntoView({ behavior:'smooth' });
-    navLinks.classList.remove('active');
+      const href = link.getAttribute('href');
+
+      // Si es una URL absoluta (https://galenat.com/#...), dejamos que navegue
+      if (href.startsWith('http')) {
+          return;
+      }
+
+      // Si es un anchor interno (#inicio, #nosotros, etc), evitar navegación normal
+      e.preventDefault();
+
+      // Hacer scroll suave a la sección
+      const target = document.querySelector(href);
+      if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Cerrar menú móvil
+      navLinks.classList.remove('active');
   });
 });
 
@@ -22,22 +36,4 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   document.querySelector('.confirmation').style.display = 'block';
   form.reset();
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-
-        // Si es una URL absoluta, no intentar hacer scroll
-        if (href.startsWith('http')) return;
-
-        // Evitar la navegación normal
-        e.preventDefault();
-
-        // Scroll hacia la sección
-        const section = document.querySelector(href);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
 });
