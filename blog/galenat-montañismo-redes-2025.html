@@ -10,40 +10,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- CORRECCIÓN IMAGEN PRODUCTO -->
 <style>
-.producto-container {
+/* CONTENEDOR GENERAL */
+.producto-detalle {
   display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
+.producto-container {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* IMAGEN PRINCIPAL */
 .producto-imagen {
-  flex: 1;
-  max-width: 500px;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .producto-imagen img {
   width: 100%;
+  max-width: 700px;
   height: auto;
-  display: block;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
+/* TEXTO */
 .producto-info {
-  flex: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .producto-container {
-    flex-direction: column;
-  }
+/* GALERÍA */
+.galeria {
+  margin-top: 3rem;
+}
 
-  .producto-imagen {
-    max-width: 100%;
-  }
+.galeria h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.galeria-item {
+  position: relative;
+}
+
+.galeria-item img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* BOTONES GALERÍA */
+.galeria-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.galeria-actions a {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.galeria-actions a:hover {
+  background: rgba(0,0,0,0.9);
 }
 </style>
 </head>
@@ -71,7 +115,7 @@
   </div>
 </nav>
 
-<!-- CABECERA DEL PRODUCTO -->
+<!-- CABECERA -->
 <header class="hero producto-hero">
   <div class="header-content">
     <h1>Montañismo invernal</h1>
@@ -80,59 +124,66 @@
   </div>
 </header>
 
-<!-- DETALLES DEL PRODUCTO -->
+<!-- DETALLE -->
 <section id="detalle" class="seccion producto-detalle">
   <div class="producto-container">
 
+    <!-- IMAGEN PRINCIPAL -->
     <div class="producto-imagen">
-      <img 
-        src="../img/galenat-montañismo-redes-2025.jpg" 
-        alt="Montañismo invernal en el Parque Natural de Redes"
-        loading="lazy"
-      >
+      <img src="../img/galenat-montañismo-redes-2025.jpg"
+           alt="Montañismo invernal en Redes"
+           loading="lazy">
     </div>
 
+    <!-- TEXTO -->
     <div class="producto-info">
       <h2>Montañismo invernal</h2>
 
-      <p>El puente de diciembre (6, 7 y 8) nos deslazamos al 
-        <strong>Parque Natural de Redes</strong>, en el corazón del centro-este asturiano. Forma parte de la Cordillera Cantábrica y fue declarado Reserva de la Biosfera por la UNESCO en 2001.</p>
+      <p>El puente de diciembre (6, 7 y 8) nos desplazamos al 
+        <strong>Parque Natural de Redes</strong>, en el corazón del centro-este asturiano.</p>
 
-      <p>Con una extensión de aproximadamente 30.000 hectáreas, abarca los concejos de Caso y Sobrescobio, ofreciendo un paisaje de valles profundos, montañas calizas y vastos bosques de hayas que cubren más del 40 % del territorio.</p>
+      <p>Con una extensión de aproximadamente 30.000 hectáreas, ofrece valles profundos, montañas calizas y vastos bosques de hayas.</p>
 
-      <p>Su valor radica en la conservación de su naturaleza casi intacta y en la tranquilidad de sus senderos, con un turismo mucho menor que en otras zonas de Asturias.</p>
+      <p>Un entorno natural auténtico, tranquilo y preservado.</p>
 
       <a href="https://galenat.com/#blog" class="cta-button">Volver al Blog</a>
     </div>
 
+    <!-- GALERÍA -->
+    <div class="galeria">
+      <h3>Galería de fotos</h3>
+
+      <div class="galeria-grid">
+
+        <div class="galeria-item">
+          <img src="../img/galeria/galenat-montañismo-redes-2025.jpg" alt="Redes 1">
+          <div class="galeria-actions">
+            <a href="../img/galeria/galenat-montañismo-redes-2025.jpg" download title="Descargar">
+              <i class="fa-solid fa-download"></i>
+            </a>
+            <a href="https://wa.me/?text=https://galenat.com/img/galeria/galenat-montañismo-redes-2025.jpg" target="_blank" title="Compartir">
+              <i class="fa-solid fa-share-nodes"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="../img/galeria/galenat-montañismo-redes-2025.jpg" alt="Redes 2">
+          <div class="galeria-actions">
+            <a href="../img/galeria/galenat-montañismo-redes-2025.jpg" download>
+              <i class="fa-solid fa-download"></i>
+            </a>
+            <a href="https://wa.me/?text=https://galenat.com/img/galeria/galenat-montañismo-redes-2025.jpg" target="_blank">
+              <i class="fa-solid fa-share-nodes"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
-
-<!-- SECCIÓN DE CONTACTO -->
-<section id="contacto" class="seccion">
-  <h2>¿Tienes dudas o quieres más información?</h2>
-  <form id="leadForm">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="mensaje" placeholder="Tu mensaje" rows="4"></textarea>
-    <button type="submit">Enviar</button>
-    <div class="confirmation">¡Recibido! Nos pondremos en contacto.</div>
-  </form>
-</section>
-
-<!-- FOOTER -->
-<footer class="seccion">
-  <p>© 2025 Galenat. Todos los derechos reservados.</p>
-  <p><i class="fa-solid fa-envelope"></i> galenat@galenat.com</p>
-
-  <div class="footer-links">
-    <a href="../bases/aviso-legal.html">Aviso Legal</a> | 
-    <a href="../bases/condiciones-generales.html">Condiciones Generales</a> | 
-    <a href="../bases/politica-privacidad.html">Política de Privacidad</a> | 
-    <a href="../bases/politica-cookies.html">Política de Cookies</a> | 
-    <a href="../bases/envios-devoluciones.html">Envíos y Devoluciones</a>
-  </div>
-</footer>
 
 <script src="../js/main.js"></script>
 </body>
