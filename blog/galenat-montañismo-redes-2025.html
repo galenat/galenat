@@ -4,11 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GALENAT</title>
+
 <link rel="stylesheet" href="../css/style.css">
 <link rel="icon" href="../favicon/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- CORRECCIÓN IMAGEN PRODUCTO -->
+<style>
+.producto-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.producto-imagen {
+  flex: 1;
+  max-width: 500px;
+}
+
+.producto-imagen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.producto-info {
+  flex: 2;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .producto-container {
+    flex-direction: column;
+  }
+
+  .producto-imagen {
+    max-width: 100%;
+  }
+}
+</style>
 </head>
+
 <body>
 
 <!-- MENÚ -->
@@ -44,22 +83,28 @@
 <!-- DETALLES DEL PRODUCTO -->
 <section id="detalle" class="seccion producto-detalle">
   <div class="producto-container">
+
     <div class="producto-imagen">
-      <img src="../img/galenat-montañismo-redes-2025.jpg" alt="galenat-montañismo-redes-2025">
+      <img 
+        src="../img/galenat-montañismo-redes-2025.jpg" 
+        alt="Montañismo invernal en el Parque Natural de Redes"
+        loading="lazy"
+      >
     </div>
 
     <div class="producto-info">
       <h2>Montañismo invernal</h2>
+
       <p>El puente de diciembre (6, 7 y 8) nos deslazamos al 
         <strong>Parque Natural de Redes</strong>, en el corazón del centro-este asturiano. Forma parte de la Cordillera Cantábrica y fue declarado Reserva de la Biosfera por la UNESCO en 2001.</p>
 
-      <p>Con una extensión de aproximadamente 30.000 hectáreas, abarca los concejos de Caso y Sobrescobio, ofreciendo un paisaje de valles profundos, montañas calizas y vastos bosques de hayas que cubren más del 40 % del territorio. Redes es uno de los últimos refugios del urogallo cantábrico y también alberga poblaciones relativamente abundantes de oso pardo.</p>
+      <p>Con una extensión de aproximadamente 30.000 hectáreas, abarca los concejos de Caso y Sobrescobio, ofreciendo un paisaje de valles profundos, montañas calizas y vastos bosques de hayas que cubren más del 40 % del territorio.</p>
 
-      <p>Su valor radica en la conservación de su naturaleza casi intacta y en la tranquilidad de sus senderos, con un turismo mucho menor que en otras zonas de Asturias, permitiendo disfrutar de una experiencia natural auténtica y preservada.</p>
+      <p>Su valor radica en la conservación de su naturaleza casi intacta y en la tranquilidad de sus senderos, con un turismo mucho menor que en otras zonas de Asturias.</p>
 
-      <!-- BOTÓN CORREGIDO -->
       <a href="https://galenat.com/#blog" class="cta-button">Volver al Blog</a>
     </div>
+
   </div>
 </section>
 
@@ -92,5 +137,3 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
-
-
