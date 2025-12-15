@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GALENAT</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="../favicon/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* CONTENEDOR GENERAL */
+.producto-detalle {
+  display: flex;
+  justify-content: center;
+}
+
+.producto-container {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* IMAGEN PRINCIPAL */
+.producto-imagen {
+  margin-bottom: 2rem;
+}
+
+.producto-imagen img {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+/* TEXTO */
+.producto-info {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* GALERÍA */
+.galeria {
+  margin-top: 3rem;
+}
+
+.galeria h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.galeria-item {
+  position: relative;
+}
+
+.galeria-item img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* BOTONES GALERÍA */
+.galeria-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.galeria-actions a {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.galeria-actions a:hover {
+  background: rgba(0,0,0,0.9);
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENÚ -->
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="https://galenat.com" class="logo">
+      <img src="../img/logos/galenat-logo.png" alt="Logo Galenat" class="logo-img">
+      <span>GALENAT</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#inicio">Inicio</a></li>
+      <li><a href="/#experiencias">Experiencias</a></li>
+      <li><a href="/#nosotros">Nosotros</a></li>
+      <li><a href="/#blog">Blog</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li><a href="/#productos">Productos</a></li>
+    </ul>
+    <div class="nav-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+</nav>
+
+<!-- DETALLE -->
+<section id="detalle" class="seccion producto-detalle">
+  <div class="producto-container">
+
+    <!-- IMAGEN PRINCIPAL -->
+    <div class="producto-imagen">
+      <img src="../img/multiactividad-costamorte-2025/galenat-multiactividad-costamorte-2025.jpg"
+           alt="Multiactividad en Costa da Morte"
+           loading="lazy">
+    </div>
+
+    <!-- TEXTO -->
+    <div class="producto-info">
+      <h2>Multiactividad en Costa da Morte</h2>
+
+      <p>
+        El puente de diciembre (6, 7 y 8) nos desplazamos al 
+        <strong>Parque Natural de Redes</strong>, en el corazón del centro-este asturiano, forma parte de la 
+        <strong>Cordillera Cantábrica</strong> y fue declarado 
+        <strong>Reserva de la Biosfera</strong> por la UNESCO en 2001.
+      </p>
+      
+      <br>
+      
+      <p>
+        Con una extensión de aproximadamente 30.000 hectáreas, abarca los concejos de Caso y Sobrescobio, 
+        ofreciendo un paisaje de valles profundos, montañas calizas y vastos bosques de hayas que cubren más del 40 % del territorio.
+      </p>
+      <p>
+        Redes es uno de los últimos refugios del urogallo cantábrico, y también alberga poblaciones relativamente abundantes de oso pardo.
+      <p>
+        Su valor radica en la conservación de su naturaleza casi intacta y en la tranquilidad de sus senderos, 
+        con un turismo mucho menor que en otras zonas de Asturias, lo que permite disfrutar de una experiencia natural auténtica y preservada.
+      </p>
+      
+      <br>
+      
+      <a href="https://galenat.com/#blog" class="cta-button">Volver al Blog</a>
+    </div>
+
+    <!-- GALERÍA -->
+    <div class="galeria">
+      <h3>Galería de fotos</h3>
+
+      <div class="galeria-grid">
+
+        <div class="galeria-item">
+          <img src="../img/multiactividad-costamorte-2025/galenat-multiactividad-costamorte-2025.jpg" alt="Galenat Multiactividad Costa da Morte 2025">
+          <div class="galeria-actions">
+            <a href="../img/multiactividad-costamorte-2025/galenat-multiactividad-costamorte-2025.jpg" download title="Descargar">
+              <i class="fa-solid fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="../img/multiactividad-costamorte-2025/galenat-multiactividad-costamorte-2025.jpg" alt="Galenat Multiactividad Costa da Morte 2025">
+          <div class="galeria-actions">
+            <a href="../img/multiactividad-costamorte-2025/galenat-multiactividad-costamorte-2025.jpg" download title="Descargar">
+              <i class="fa-solid fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
+
+<!-- FOOTER -->
+<footer class="seccion">
+  <p>© 2025 Galenat. Todos los derechos reservados.</p>
+  <p><i class="fa-solid fa-envelope"></i> galenat@galenat.com</p>
+  <div class="footer-links">
+    <a href="../bases/aviso-legal.html">Aviso Legal</a> | 
+    <a href="../bases/condiciones-generales.html">Condiciones Generales</a> | 
+    <a href="../bases/politica-privacidad.html">Política de Privacidad</a> | 
+    <a href="../bases/politica-cookies.html">Política de Cookies</a> | 
+    <a href="../bases/envios-devoluciones.html">Envíos y Devoluciones</a>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
+
+
