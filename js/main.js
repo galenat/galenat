@@ -43,11 +43,3 @@ document.querySelectorAll('.nav-links a').forEach(link => {
       navLinks.classList.remove('active');
   });
 });
-
-// Formulario (solo efecto)
-const form = document.getElementById('leadForm');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  document.querySelector('.confirmation').style.display = 'block';
-  form.reset();
-});
