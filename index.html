@@ -154,19 +154,20 @@
 <section id="contacto" class="seccion">
   <h2>Contacto</h2>
 
-  <form id="leadForm">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="tel" name="telefono" placeholder="Teléfono" required>
-    <textarea name="mensaje1" placeholder="Cómo nos conociste (opcional)" rows="3"></textarea>
-    <textarea name="mensaje2" placeholder="Más info (opcional)" rows="3"></textarea>
-    <button type="submit">Enviar</button>
-    <div class="confirmation">¡Recibido! Nos pondremos en contacto.</div>
-  </form>
+<form id="leadForm" action="enviar.php" method="POST">
+  <input type="text" name="nombre" placeholder="Nombre" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="tel" name="telefono" placeholder="Teléfono" required>
+  <textarea name="mensaje1"></textarea>
+  <textarea name="mensaje2"></textarea>
+  <button type="submit">Enviar</button>
+</form>
 
 </section>
-
+  
 <!-- PRODUCTOS -->
+  
+  <!--
 <section id="productos" class="seccion">
   <h2>Productos</h2>
 
@@ -198,6 +199,7 @@
 
   </div>
 </section>
+  -->
 
 <!-- FOOTER -->
 <footer class="seccion">
@@ -218,19 +220,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
