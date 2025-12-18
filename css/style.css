@@ -32,13 +32,23 @@ img { max-width:100%; display:block; border-radius:12px; }
   text-align: center;
 }
 .logo-img {
-  width: 180px;
+  width: 80px;
   height: auto;
   margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) {
   .logo-img {
-    width: 220px;      /* logo más grande en desktop */
+    width: 120px;      /* logo más grande en desktop */
+  }
+}
+.logo-img-hero {
+  width: 2000px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .logo-img-hero {
+    width: 240px;      /* logo más grande en desktop */
   }
 }
 .nav-links { display:flex; gap:2rem; }
@@ -254,3 +264,4 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
