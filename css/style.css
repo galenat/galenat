@@ -27,7 +27,35 @@ img { max-width:100%; display:block; border-radius:12px; }
   padding:0.8rem 1.5rem;
 }
 
+/* ===== LOGO HEADER ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.logo-icon {
+  width: 38px;
+  height: auto;
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* ===== AJUSTE MÓVIL ===== */
+@media (max-width: 768px) {
+  .logo-icon {
+    width: 32px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+}
 
 .nav-links { display:flex; gap:2rem; }
 .nav-links li a { color:#fff; font-weight:600; transition:0.3s; }
@@ -242,6 +270,7 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
 
