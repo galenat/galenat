@@ -32,24 +32,24 @@ img { max-width:100%; display:block; border-radius:12px; }
   text-align: center;
 }
 .logo-img {
-  width: 20px;  /* más pequeño en móvil */
+  width: 50px;  /* más pequeño en móvil */
   height: auto;
   margin-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .logo-img {
-    width: 60px;  /* más pequeño en escritorio */
+    width: 50px;  /* más pequeño en escritorio */
   }
 }
 .logo-img-hero {
-  width: 2000px;
+  width: 300px;
   height: auto;
   margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) {
   .logo-img-hero {
-    width: 240px;      /* logo más grande en desktop */
+    width: 300px;      /* logo más grande en desktop */
   }
 }
 .nav-links { display:flex; gap:2rem; }
@@ -265,5 +265,6 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
