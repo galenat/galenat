@@ -26,32 +26,9 @@ img { max-width:100%; display:block; border-radius:12px; }
   display:flex; justify-content:space-between; align-items:center;
   padding:0.8rem 1.5rem;
 }
-.logo {
-  display:flex; align-items:center; gap:0.6rem; font-size:1.4rem; font-weight:700; color:#fff;
-  flex-direction: column;  /* centra verticalmente logo y texto */
-  text-align: center;
-}
-.logo-img {
-  width: 50px;  /* más pequeño en móvil */
-  height: auto;
-  margin-bottom: 1.5rem;
-}
 
-@media (min-width: 768px) {
-  .logo-img {
-    width: 50px;  /* más pequeño en escritorio */
-  }
-}
-.logo-img-hero {
-  width: 300px;
-  height: auto;
-  margin-bottom: 1.5rem;
-}
-@media (min-width: 768px) {
-  .logo-img-hero {
-    width: 300px;      /* logo más grande en desktop */
-  }
-}
+
+
 .nav-links { display:flex; gap:2rem; }
 .nav-links li a { color:#fff; font-weight:600; transition:0.3s; }
 .nav-links li a:hover { color:var(--primary); }
@@ -265,6 +242,7 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
 
