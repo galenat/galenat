@@ -10,7 +10,7 @@ img { max-width:100%; display:block; border-radius:12px; }
 
 /* COLORES */
 :root {
-  --primary:#00bf63;
+  --primary:#000000;
   --secondary:#FFB347;
   --light:#ebe2cd;
   --dark:#2F2F2F;
@@ -102,7 +102,7 @@ img { max-width:100%; display:block; border-radius:12px; }
   border-radius: 50px;
   font-weight: 700;
   font-size: 1rem;
-  background: var(--primary, #00bf63);
+  background: var(--primary, #000000);
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -270,6 +270,7 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
 
