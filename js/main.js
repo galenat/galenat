@@ -32,9 +32,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // ===== CARGA DINÁMICA DE EXPERIENCIAS =====
 const activitiesGrid = document.querySelector('.activities-grid');
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
+const sheetUrl = 'TU_LINK_PUBLICO_CSV';
 
-// Función para convertir CSV a array de objetos (soporta comas dentro de comillas)
+// Convierte CSV a array de objetos, soportando comas dentro de comillas
 function csvToArray(csv) {
     const [headerLine, ...lines] = csv.trim().split('\n');
     const headers = headerLine.split(',');
@@ -53,23 +53,29 @@ fetch(sheetUrl)
   .then(csv => {
     const data = csvToArray(csv);
 
-    // Filtrar solo futuras experiencias publicadas
-    const upcoming = data.filter(item => 
+    // Filtrar solo experiencias futuras y publicadas
+    const upcoming = data.filter(item =>
         item.Estado.toLowerCase() === 'publicado' &&
         item.Categoria.toLowerCase() === 'experiencia' &&
+        new Date(item.Fecha_inicio) >= today
     );
 
+    upcoming.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
-    // Generar tarjetas con la estructura que me pasaste
     upcoming.forEach(item => {
+        const fechaInicio = new Date(item.Fecha_inicio);
+        const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
+        let fechaTexto = fechaFin 
+            ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
+            : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} ${fechaInicio.getFullYear()}`;
 
         const article = document.createElement('article');
         article.className = 'activity';
         article.innerHTML = `
-            <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
+            <img src="${item.Imagen}" alt="${item.Título}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
             <p>${item.Lugar}</p>
-            <p>${item.Fecha}</p>
+            <p>${fechaTexto}</p>
             <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
             <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
         `;
@@ -77,6 +83,3 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
-
-
-
