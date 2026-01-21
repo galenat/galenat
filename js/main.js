@@ -36,12 +36,14 @@ const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejb
 
 // Convierte CSV a array de objetos, soportando comas dentro de comillas
 function csvToArray(csv) {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
+    const lines = csv.trim().split('\n').filter(l => l.trim() !== '');
+    
+    // Separador: detectar tab, punto y coma o coma
+    const sep = lines[0].includes('\t') ? '\t' : (lines[0].includes(';') ? ';' : ',');
+    const headers = lines[0].split(sep).map(h => h.trim());
 
     return lines.slice(1).map(line => {
-        // Separar por comas, conservando las celdas vacías
-        const data = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
+        const data = line.split(sep).map(v => v.replace(/^"|"$/g, '').trim());
         const obj = {};
         headers.forEach((h, i) => obj[h] = data[i] || '');
         return obj;
@@ -76,7 +78,7 @@ fetch(sheetUrl)
         article.innerHTML = `
             <img src="${item.Imagen}" alt="${item.Título}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
-            <p>${item.Lugar}</p>
+            <p>${item.Zona} | ${item.Lugar}</p>
             <p>${fechaTexto}</p>
             <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
             <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
@@ -85,6 +87,7 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
 
 
 
