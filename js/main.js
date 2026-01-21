@@ -10,17 +10,11 @@ navToggle.addEventListener('click', () => {
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', e => {
       const href = link.getAttribute('href');
-
-      // Solo manejar los anchors (#inicio, #experiencias, etc)
       if (!href.startsWith('/#')) return;
 
       e.preventDefault();
-
       const anchor = href.replace('/', '');
-
-      const isHome =
-        location.pathname === "/" ||
-        location.pathname === "/index.html";
+      const isHome = location.pathname === "/" || location.pathname === "/index.html";
 
       if (isHome) {
           const target = document.querySelector(anchor);
@@ -40,21 +34,18 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const activitiesGrid = document.querySelector('.activities-grid');
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
 
-// Función para convertir CSV a array de objetos
+// Función para convertir CSV a array de objetos (soporta comas dentro de comillas)
 function csvToArray(csv) {
     const [headerLine, ...lines] = csv.trim().split('\n');
     const headers = headerLine.split(',');
     return lines.map(line => {
-        const data = line.split(',');
+        const data = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g).map(v => v.replace(/^"|"$/g, ''));
         const obj = {};
-        headers.forEach((h, i) => {
-            obj[h.trim()] = data[i] ? data[i].trim() : '';
-        });
+        headers.forEach((h, i) => obj[h.trim()] = data[i] ? data[i].trim() : '');
         return obj;
     });
 }
 
-// Obtener hoy para filtrar futuras experiencias
 const today = new Date();
 
 fetch(sheetUrl)
@@ -72,13 +63,13 @@ fetch(sheetUrl)
     // Ordenar por fecha de inicio
     upcoming.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
-    // Generar tarjetas
+    // Generar tarjetas con la estructura que me pasaste
     upcoming.forEach(item => {
         const fechaInicio = new Date(item.Fecha_inicio);
         const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
         let fechaTexto = fechaFin 
             ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
-            : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} ${fechaInicio.getFullYear()}`;
+            : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'long' })} ${fechaInicio.getFullYear()}`;
 
         const article = document.createElement('article');
         article.className = 'activity';
