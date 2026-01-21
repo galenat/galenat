@@ -36,12 +36,14 @@ const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejb
 
 // Convierte CSV a array de objetos, soportando comas dentro de comillas
 function csvToArray(csv) {
-    const [headerLine, ...lines] = csv.trim().split('\n');
-    const headers = headerLine.split(',');
-    return lines.map(line => {
-        const data = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g).map(v => v.replace(/^"|"$/g, ''));
+    const lines = csv.trim().split('\n');
+    const headers = lines[0].split(',').map(h => h.trim());
+
+    return lines.slice(1).map(line => {
+        // Separar por comas, conservando las celdas vacías
+        const data = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
         const obj = {};
-        headers.forEach((h, i) => obj[h.trim()] = data[i] ? data[i].trim() : '');
+        headers.forEach((h, i) => obj[h] = data[i] || '');
         return obj;
     });
 }
@@ -83,4 +85,5 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
 
