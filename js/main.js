@@ -65,19 +65,14 @@ fetch(sheetUrl)
 
     // Generar tarjetas con la estructura que me pasaste
     upcoming.forEach(item => {
-        const fechaInicio = new Date(item.Fecha_inicio);
-        const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
-        let fechaTexto = fechaFin 
-            ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
-            : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'long' })} ${fechaInicio.getFullYear()}`;
 
         const article = document.createElement('article');
         article.className = 'activity';
         article.innerHTML = `
             <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
-            <h3>${item.Titulo}</h3>
-            <p>${item.Tipo}</p>
-            <p>${fechaTexto}</p>
+            <h3>${item.Actividad}</h3>
+            <p>${item.Lugar} asd ${item.Lugar}</p>
+            <p>${item.Fecha}</p>
             <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
             <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
         `;
@@ -85,4 +80,5 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
 
