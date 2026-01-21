@@ -32,7 +32,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // ===== CARGA DINÁMICA DE EXPERIENCIAS =====
 const activitiesGrid = document.querySelector('.activities-grid');
-const sheetUrl = 'TU_LINK_PUBLICO_CSV';
+const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pubhtml';
 
 // Convierte CSV a array de objetos, soportando comas dentro de comillas
 function csvToArray(csv) {
@@ -83,3 +83,4 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
