@@ -57,11 +57,8 @@ fetch(sheetUrl)
     const upcoming = data.filter(item => 
         item.Estado.toLowerCase() === 'publicado' &&
         item.Categoria.toLowerCase() === 'experiencia' &&
-        new Date(item.Fecha_inicio) >= today
     );
 
-    // Ordenar por fecha de inicio
-    upcoming.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
     // Generar tarjetas con la estructura que me pasaste
     upcoming.forEach(item => {
@@ -71,7 +68,7 @@ fetch(sheetUrl)
         article.innerHTML = `
             <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
-            <p>${item.Lugar} asd ${item.Lugar}</p>
+            <p>${item.Lugar}</p>
             <p>${item.Fecha}</p>
             <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
             <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
@@ -80,5 +77,6 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
 
 
