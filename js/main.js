@@ -31,8 +31,24 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // ===== CARGA DINÁMICA DE EXPERIENCIAS Y BLOG =====
-const activitiesGrid = document.querySelector('.activities-grid'); // contenedor Experiencias
-const blogGrid = document.querySelector('.blog-grid');             // contenedor Blog
+const activitiesGrid = document.querySelector('.activities-grid');
+let blogGrid = document.querySelector('.blog-grid'); // buscamos el blog
+
+// Si no existe el contenedor de blog, lo creamos automáticamente
+if (!blogGrid) {
+  const blogSection = document.createElement('section');
+  blogSection.id = 'blog';
+  blogSection.className = 'seccion';
+  blogSection.innerHTML = `<h2>Blog</h2><div class="blog-grid"></div>`;
+  // Insertamos después de experiencias si existe, sino al final del body
+  if (activitiesGrid && activitiesGrid.parentNode) {
+    activitiesGrid.parentNode.insertAdjacentElement('afterend', blogSection);
+  } else {
+    document.body.appendChild(blogSection);
+  }
+  blogGrid = document.querySelector('.blog-grid');
+}
+
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
 
 // Convierte CSV a array de objetos, soportando tab, coma o punto y coma
@@ -54,36 +70,55 @@ fetch(sheetUrl)
   .then(csv => {
     const data = csvToArray(csv);
 
-    // Filtrar solo elementos publicados
-    const published = data.filter(item => item.Estado.toLowerCase() === 'publicado');
+    // Filtrar y ordenar experiencias
+    const experiencias = data
+      .filter(item => item.Estado.toLowerCase() === 'publicado' && item.Categoria.toLowerCase() === 'experiencia')
+      .sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
-    // Ordenar por fecha de inicio
-    published.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
+    experiencias.forEach(item => {
+      const fechaInicio = new Date(item.Fecha_inicio);
+      const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
+      const fechaTexto = fechaFin 
+        ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
+        : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} ${fechaInicio.getFullYear()}`;
 
-    published.forEach(item => {
-        const fechaInicio = new Date(item.Fecha_inicio);
-        const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
-        let fechaTexto = fechaFin 
-            ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
-            : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} ${fechaInicio.getFullYear()}`;
-
-        const article = document.createElement('article');
-        article.className = 'activity';
-        article.innerHTML = `
-            <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
-            <h3>${item.Actividad}</h3>
-            <p>${item.Zona} | ${item.Lugar}</p>
-            <p>${fechaTexto}</p>
-            <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
-            <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
-        `;
-
-        // Añadir al contenedor correspondiente según categoría
-        if (item.Categoria.toLowerCase() === 'experiencia') {
-            activitiesGrid.appendChild(article);
-        } else if (item.Categoria.toLowerCase() === 'blog') {
-            blogGrid.appendChild(article);
-        }
+      const article = document.createElement('article');
+      article.className = 'activity';
+      article.innerHTML = `
+        <img src="${item.Imagen}" alt="${item.Texto_corto || item.Actividad}" class="activity-img" loading="lazy">
+        <h3>${item.Actividad}</h3>
+        <p>${item.Zona} | ${item.Lugar}</p>
+        <p>${fechaTexto}</p>
+        <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
+        <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
+      `;
+      activitiesGrid.appendChild(article);
     });
+
+    // Filtrar y ordenar blogs
+    const blogs = data
+      .filter(item => item.Estado.toLowerCase() === 'publicado' && item.Categoria.toLowerCase() === 'blog')
+      .sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
+
+    blogs.forEach(item => {
+      const fechaInicio = new Date(item.Fecha_inicio);
+      const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
+      const fechaTexto = fechaFin 
+        ? `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} – ${fechaFin.getDate()} ${fechaFin.toLocaleString('es', { month: 'short' })} ${fechaFin.getFullYear()}`
+        : `${fechaInicio.getDate()} ${fechaInicio.toLocaleString('es', { month: 'short' })} ${fechaInicio.getFullYear()}`;
+
+      const article = document.createElement('article');
+      article.className = 'activity';
+      article.innerHTML = `
+        <img src="${item.Imagen}" alt="${item.Texto_corto || item.Actividad}" class="activity-img" loading="lazy">
+        <h3>${item.Actividad}</h3>
+        <p>${item.Zona} | ${item.Lugar}</p>
+        <p>${fechaTexto}</p>
+        <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
+        <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
+      `;
+      blogGrid.appendChild(article);
+    });
+
   })
   .catch(err => console.error('Error cargando experiencias:', err));
