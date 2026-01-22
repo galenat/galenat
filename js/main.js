@@ -115,7 +115,6 @@ fetch(sheetUrl)
         <p>${item.Zona} | ${item.Lugar}</p>
         <p>${fechaTexto}</p>
         <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
-        <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
       `;
       blogGrid.appendChild(article);
     });
