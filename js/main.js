@@ -76,7 +76,7 @@ fetch(sheetUrl)
         const article = document.createElement('article');
         article.className = 'activity';
         article.innerHTML = `
-            <img src="${item.Imagen}" alt="${item.Título}" class="activity-img" loading="lazy">
+            <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
             <p>${item.Zona} | ${item.Lugar}</p>
             <p>${fechaTexto}</p>
@@ -87,6 +87,7 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
 
 
 
