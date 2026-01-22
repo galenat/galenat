@@ -144,12 +144,12 @@ img { max-width:100%; display:block; border-radius:12px; }
 }
 
 /* ACTIVIDADES / FORMACIÓN / BLOG */
-.activities-grid, .products-grid, .team-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:2rem;
-  max-width:1200px;
-  margin:0 auto;
+.activities-grid, .blog-grid, .products-grid, .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .activity, .product-card, .team-member {
   background:#fff;
@@ -231,9 +231,11 @@ footer a:hover {
 
 /* RESPONSIVE */
 @media (max-width:900px){
-  .activities-grid, .products-grid, .team-grid {
-    grid-template-columns:1fr;
+  .activities-grid, .blog-grid, .products-grid, .team-grid {
+    grid-template-columns: 1fr;
   }
+}
+
 
   /* MENÚ MÓVIL CENTRADO DEBAJO DEL LOGO */
   .nav-links {
@@ -270,6 +272,7 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
 
