@@ -30,8 +30,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// ===== CARGA DINÁMICA DE EXPERIENCIAS =====
-const activitiesGrid = document.querySelector('.activities-grid');
+// ===== CARGA DINÁMICA DE EXPERIENCIAS Y BLOG =====
+const activitiesGrid = document.querySelector('.activities-grid'); // contenedor Experiencias
+const blogGrid = document.querySelector('.blog-grid');             // contenedor Blog
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
 
 // Convierte CSV a array de objetos, soportando tab, coma o punto y coma
@@ -53,16 +54,13 @@ fetch(sheetUrl)
   .then(csv => {
     const data = csvToArray(csv);
 
-    // Mostrar todas las experiencias publicadas (sin filtrar por fecha)
-    const allExperiences = data.filter(item =>
-        item.Estado.toLowerCase() === 'publicado' &&
-        item.Categoria.toLowerCase() === 'experiencia'
-    );
+    // Filtrar solo elementos publicados
+    const published = data.filter(item => item.Estado.toLowerCase() === 'publicado');
 
-    // Ordenar por fecha de inicio (opcional)
-    allExperiences.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
+    // Ordenar por fecha de inicio
+    published.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
-    allExperiences.forEach(item => {
+    published.forEach(item => {
         const fechaInicio = new Date(item.Fecha_inicio);
         const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
         let fechaTexto = fechaFin 
@@ -72,14 +70,20 @@ fetch(sheetUrl)
         const article = document.createElement('article');
         article.className = 'activity';
         article.innerHTML = `
-            <img src="${item.Imagen}" alt="${item.Título}" class="activity-img" loading="lazy">
+            <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
             <p>${item.Zona} | ${item.Lugar}</p>
             <p>${fechaTexto}</p>
             <a href="${item.Link_leer_mas || '#'}" class="cta-button">Leer más</a>
             <a href="${item.Apuntame_URL || '#'}" class="cta-button">Apúntame</a>
         `;
-        activitiesGrid.appendChild(article);
+
+        // Añadir al contenedor correspondiente según categoría
+        if (item.Categoria.toLowerCase() === 'experiencia') {
+            activitiesGrid.appendChild(article);
+        } else if (item.Categoria.toLowerCase() === 'blog') {
+            blogGrid.appendChild(article);
+        }
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
