@@ -98,7 +98,7 @@ fetch(sheetUrl)
     // Filtrar y ordenar blogs
     const blogs = data
       .filter(item => item.Estado.toLowerCase() === 'publicado' && item.Categoria.toLowerCase() === 'blog')
-      .sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
+      .sort((a, b) => new Date(b.Fecha_inicio) - new Date(a.Fecha_inicio));
 
     blogs.forEach(item => {
       const fechaInicio = new Date(item.Fecha_inicio);
@@ -121,3 +121,4 @@ fetch(sheetUrl)
 
   })
   .catch(err => console.error('Error cargando experiencias:', err));
+
