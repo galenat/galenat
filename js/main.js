@@ -34,11 +34,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const activitiesGrid = document.querySelector('.activities-grid');
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
 
-// Convierte CSV a array de objetos, soportando comas dentro de comillas
+// Convierte CSV a array de objetos, soportando tab, coma o punto y coma
 function csvToArray(csv) {
     const lines = csv.trim().split('\n').filter(l => l.trim() !== '');
-    
-    // Separador: detectar tab, punto y coma o coma
     const sep = lines[0].includes('\t') ? '\t' : (lines[0].includes(';') ? ';' : ',');
     const headers = lines[0].split(sep).map(h => h.trim());
 
@@ -50,23 +48,21 @@ function csvToArray(csv) {
     });
 }
 
-const today = new Date();
-
 fetch(sheetUrl)
   .then(res => res.text())
   .then(csv => {
     const data = csvToArray(csv);
 
-    // Filtrar solo experiencias futuras y publicadas
-    const upcoming = data.filter(item =>
+    // Mostrar todas las experiencias publicadas (sin filtrar por fecha)
+    const allExperiences = data.filter(item =>
         item.Estado.toLowerCase() === 'publicado' &&
-        item.Categoria.toLowerCase() === 'experiencia' &&
-        new Date(item.Fecha_inicio) >= today
+        item.Categoria.toLowerCase() === 'experiencia'
     );
 
-    upcoming.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
+    // Ordenar por fecha de inicio (opcional)
+    allExperiences.sort((a, b) => new Date(a.Fecha_inicio) - new Date(b.Fecha_inicio));
 
-    upcoming.forEach(item => {
+    allExperiences.forEach(item => {
         const fechaInicio = new Date(item.Fecha_inicio);
         const fechaFin = item.Fecha_fin ? new Date(item.Fecha_fin) : null;
         let fechaTexto = fechaFin 
@@ -76,7 +72,7 @@ fetch(sheetUrl)
         const article = document.createElement('article');
         article.className = 'activity';
         article.innerHTML = `
-            <img src="${item.Imagen}" alt="${item.Texto_corto}" class="activity-img" loading="lazy">
+            <img src="${item.Imagen}" alt="${item.Título}" class="activity-img" loading="lazy">
             <h3>${item.Actividad}</h3>
             <p>${item.Zona} | ${item.Lugar}</p>
             <p>${fechaTexto}</p>
@@ -87,8 +83,3 @@ fetch(sheetUrl)
     });
   })
   .catch(err => console.error('Error cargando experiencias:', err));
-
-
-
-
-
