@@ -208,7 +208,7 @@ form button {
 .confirmation {
   display:none;
   text-align:center;
-  color:green;
+  color:black;
   font-weight:700;
   margin-top:1rem;
 }
@@ -272,6 +272,7 @@ footer a:hover {
     z-index: 1000;
   }
 }
+
 
 
 
