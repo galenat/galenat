@@ -63,6 +63,35 @@ if (!nosotrosGrid) {
 // URL del CSV
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjjIOH4mZiejbyg3vbOMbq0BIcwXtG63yLp_7XMZwxYTrVtg9dS-gkthcjp2Xz4DZI0AyJRd8C9aww/pub?output=csv';
 
+// ===== FUNCIONES AUXILIARES =====
+
+function csvToArray(csv, delimiter = ",") {
+  const lines = csv.split("\n").filter(line => line.trim() !== "");
+  const headers = lines[0].split(delimiter).map(h => h.trim());
+
+  return lines.slice(1).map(line => {
+    const values = line.split(delimiter);
+    const obj = {};
+
+    headers.forEach((header, i) => {
+      obj[header] = values[i] ? values[i].trim() : "";
+    });
+
+    return obj;
+  });
+}
+
+function driveLinkToDirect(url) {
+  if (!url) return "";
+
+  const match = url.match(/\/d\/(.*?)\//);
+  if (match && match[1]) {
+    return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  }
+
+  return url;
+}
+
 // Fetch y creación de tarjetas
 fetch(sheetUrl)
   .then(res => res.text())
