@@ -1,60 +1,29 @@
-// ===== MENÚ MÓVIL TOGGLE =====
+// ===== BARRA MENÚ (Desplegable) =====
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-navToggle.addEventListener('click', () => {
+// Abrir / cerrar con hamburguesa
+navToggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // evita que se cierre al instante
   navLinks.classList.toggle('active');
 });
 
-// ===== SCROLL SUAVE / REDIRECCIÓN =====
+// Cerrar al clicar enlace
 document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', e => {
-    const href = link.getAttribute('href');
-    if (!href.startsWith('/#')) return;
-
-    e.preventDefault();
-    const anchor = href.replace('/', '');
-    const isHome = location.pathname === "/" || location.pathname === "/index.html";
-
-    if (isHome) {
-      const target = document.querySelector(anchor);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => { history.replaceState(null, "", "/"); }, 400);
-      }
-    } else {
-      window.location.href = "/" + anchor;
-    }
-
+  link.addEventListener('click', () => {
     navLinks.classList.remove('active');
   });
 });
 
-// ===== FUNCIONES AUXILIARES =====
-
-// Convierte enlace de Google Drive a enlace directo
-function driveLinkToDirect(url) {
-  const regex = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/;
-  const match = url.match(regex);
-  if (match && match[1]) {
-    return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+// Cerrar al clicar fuera
+document.addEventListener('click', (e) => {
+  if (
+    !navLinks.contains(e.target) &&
+    !navToggle.contains(e.target)
+  ) {
+    navLinks.classList.remove('active');
   }
-  return url; // si no es un enlace de Drive, lo deja tal cual
-}
-
-// Convierte CSV a array de objetos
-function csvToArray(csv) {
-  const lines = csv.trim().split('\n').filter(l => l.trim() !== '');
-  const sep = lines[0].includes('\t') ? '\t' : (lines[0].includes(';') ? ';' : ',');
-  const headers = lines[0].split(sep).map(h => h.trim());
-
-  return lines.slice(1).map(line => {
-    const data = line.split(sep).map(v => v.replace(/^"|"$/g, '').trim());
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = data[i] || '');
-    return obj;
-  });
-}
+});
 
 // ===== CARGA DINÁMICA DE CONTENIDO =====
 
