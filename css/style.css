@@ -17,7 +17,6 @@ img { max-width: 100%; display: block; border-radius: 12px; }
 /* COLORES */
 :root {
   --beige: #ebe2cd;
-  --naranja: #ffc777;
   --negro: #000000;
   --gris: #2f2f2f;
   --blanco: #ffffff;
@@ -88,7 +87,7 @@ img { max-width: 100%; display: block; border-radius: 12px; }
   transition: color 0.3s;
 }
 
-.nav-links a:hover { color: var(--naranja); }
+.nav-links a:hover { color: var(--gris); }
 
 /* HAMBURGUESA RESPONSIVE */
 .nav-toggle {
@@ -296,7 +295,7 @@ img { max-width: 100%; display: block; border-radius: 12px; }
   padding: 0.6rem 1.2rem; 
   font-size: 0.9rem;
   border-radius: 30px;
-  background: var(--naranja);
+  background: var(--beige);
   color: #000;
   font-weight: 600;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
@@ -362,3 +361,4 @@ footer {
   color: #666;
   background: #fff;
 }
+
