@@ -62,9 +62,19 @@ img { max-width: 100%; display: block; border-radius: 12px; }
   transition: height 0.3s ease;
 }
 
+/* Contenedor del logo centrado */
+.hero .nav-logo {
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical si hay altura definida */
+  margin-bottom: 2rem;      /* opcional, espacio debajo del logo */
+}
+
 /* Logo dentro del hero */
 .hero .nav-logo img {
-  height: 100px;
+  height: 200px;
+  width: auto;
+  display: block;           /* asegurar que no haya inline-gap */
 }
 
 /* ============================= */
@@ -355,5 +365,6 @@ footer {
   color: #666;
   background: #fff;
 }
+
 
 
