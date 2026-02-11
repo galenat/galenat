@@ -53,6 +53,9 @@ img { max-width:100%; display:block; border-radius:12px; }
 
 .nav-logo img {
   height: 45px;
+  width: auto;
+  max-width: none;   /* 🔥 esto anula el max-width:100% global */
+  border-radius: 0;  /* opcional si no quieres bordes redondeados */
 }
 
 /* MENÚ DERECHA */
@@ -368,3 +371,4 @@ footer {
   color:#666;
   background:#fff;
 }
+
