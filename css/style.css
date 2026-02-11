@@ -363,79 +363,6 @@ form button {
   cursor:pointer;
 }
 
-/* ===== SECCIÓN RESEÑAS GALENAT ===== */
-.galenat-reviews {
-  padding: 100px 20px;
-  background-color: var(--beige); /* uniforme con tu paleta */
-  text-align: center;
-}
-
-.reviews-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.reviews-divider {
-  width: 60px;
-  height: 1px;
-  background-color: var(--gris);
-  margin: 0 auto 40px auto;
-  opacity: 0.4;
-}
-
-.galenat-reviews h3 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--gris);
-}
-
-.reviews-subtext {
-  font-size: 17px;
-  line-height: 1.7;
-  color: #333;
-  margin-bottom: 30px;
-}
-
-/* Puntuación */
-.google-rating {
-  font-size: 18px;
-  margin-bottom: 25px;
-  color: var(--gris);
-}
-
-.rating-score {
-  font-weight: 600;
-  font-size: 22px;
-}
-
-.rating-separator {
-  margin: 0 8px;
-  opacity: 0.5;
-}
-
-.rating-count {
-  opacity: 0.7;
-}
-
-/* Estrellas */
-.star-rating {
-  display: inline-flex;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.star-rating span {
-  font-size: 34px;
-  color: #ccc;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.star-rating span.hovered,
-.star-rating span.active {
-  color: var(--naranja); /* dorado / acento de tu paleta */
-  transform:
-
 /* FOOTER */
 footer {
   text-align:center;
@@ -444,5 +371,6 @@ footer {
   color:#666;
   background:#fff;
 }
+
 
 
