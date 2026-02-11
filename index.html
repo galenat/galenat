@@ -28,34 +28,25 @@
 </head>
 
 <body>
+  
 <!-- MENÚ -->
-<nav class="main-nav">
-  <div class="nav-container">
+<script>
+fetch("/header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header-container").innerHTML = data;
 
-    <!-- Logo izquierda -->
-    <a href="https://galenat.com" class="nav-logo">
-      <img src="img/logos/galenat-logo.png" alt="Logo Galenat Turismo Activo">
-      <span>GALENAT</span>
-    </a>
+    // Activar hamburguesa DESPUÉS de cargar el menú
+    const toggle = document.querySelector(".nav-toggle");
+    const links = document.querySelector(".nav-links");
 
-    <!-- Menú derecha -->
-    <ul class="nav-links">
-      <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#experiencias">Experiencias</a></li>
-      <li><a href="https://galenat.com/experiencias/galenat-experiencias-personalizadas-2026.html">A medida</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-
-    <!-- Botón hamburguesa -->
-    <div class="nav-toggle">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-  </div>
-</nav>
-
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        links.classList.toggle("active");
+      });
+    }
+  });
+</script>
 
 <!-- HERO -->
 <section id="inicio" class="hero">
@@ -206,3 +197,4 @@
 
 </body>
 </html>
+
