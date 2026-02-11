@@ -64,13 +64,7 @@ img { max-width: 100%; display: block; border-radius: 12px; }
 
 /* Logo dentro del hero */
 .hero .nav-logo img {
-  height: 35px;
-}
-
-@media (max-width: 900px) {
-  .hero .nav-logo img {
-    height: 25px;
-  }
+  height: 100px;
 }
 
 /* ============================= */
@@ -361,4 +355,5 @@ footer {
   color: #666;
   background: #fff;
 }
+
 
