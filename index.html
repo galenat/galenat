@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <!-- Imagen para Google y redes -->
-  <meta property="og:image" content="https://galenat.com/galenat-logo.png">
+  <meta property="og:image" content="https://galenat.com/img/logos/galenat-logo.png">
   <meta property="og:title" content="GALENAT">
   <meta property="og:description" content="Turismo activo en Galicia con guías titulados. Experiencias de montañismo, senderismo, kayak, e-bike, paddle surf y team building con seguridad y profesionalidad.">
   <meta property="og:url" content="https://galenat.com">
@@ -56,6 +56,7 @@
 
   </div>
 </nav>
+
 
 <!-- HERO -->
 <section id="inicio" class="hero">
@@ -122,33 +123,71 @@
   <div class="blog-grid"></div>
 </section>
 
-
 <!-- CONTACTO -->
 <section id="contacto" class="seccion">
   <h2>Contacto</h2>
 
   <p><strong>Email:</strong> galenat@galenat.com</p>
-  <p><strong>Nº tlf Nolo:</strong> 609 20 62 07</p>
   <p><strong>Nº tlf Varela:</strong> 605 26 00 05</p>
+  <p><strong>Nº tlf Nolo:</strong> 609 20 62 07</p>
   <br>
 
-<form action="https://formspree.io/f/myzraknn" method="POST">
-  <input type="text" name="Nombre" placeholder="Nombre" required>
-  <input type="email" name="Email" placeholder="Email" required>
-  <input type="tel" name="Teléfono" placeholder="Teléfono" required>
+  <form action="https://formspree.io/f/myzraknn" method="POST">
+    <input type="text" name="Nombre" placeholder="Nombre" required>
+    <input type="email" name="Email" placeholder="Email" required>
+    <input type="tel" name="Teléfono" placeholder="Teléfono" required>
 
-  <textarea name="Mensaje" placeholder="Mensaje"></textarea>
-  <textarea name="Cómo nos conociste" placeholder="Cómo nos conociste (opcional)"></textarea>
+    <textarea name="Asunto" placeholder="Asunto"></textarea>
+    <textarea name="Mensaje" placeholder="Mensaje"></textarea>
 
-  <input type="text" name="_gotcha" style="display:none">
+    <input type="text" name="_gotcha" style="display:none">
 
-  <button type="submit" class="cta-button">Enviar</button>
-
-</form>
+    <button type="submit" class="cta-button">Enviar</button>
+  </form>
 
 </section>
-  
-  
+
+<!-- ====== SECCIÓN RESEÑAS GALENAT ====== -->
+<section class="galenat-reviews">
+  <div class="reviews-wrapper">
+
+    <div class="reviews-divider"></div>
+
+    <h3>Tu experiencia en la naturaleza cuenta</h3>
+
+    <p class="reviews-subtext">
+      Si has compartido montaña, mar o sendero con nosotros, tu opinión ayuda a otros a vivir la naturaleza con seguridad y profesionalidad.
+    </p>
+
+    <!-- Puntuación Google (editable dinámicamente) -->
+    <div class="google-rating">
+      <span class="rating-score">4.9</span>
+      <span class="rating-separator">·</span>
+      <span class="rating-count">127 reseñas</span>
+    </div>
+
+    <!-- Estrellas interactivas -->
+    <div class="star-rating" id="starRating">
+      <span data-value="1">&#9733;</span>
+      <span data-value="2">&#9733;</span>
+      <span data-value="3">&#9733;</span>
+      <span data-value="4">&#9733;</span>
+      <span data-value="5">&#9733;</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== BOTÓN FLOTANTE ====== -->
+<a href="https://g.page/r/CTvPCgh25HIcEBM/review"
+   target="_blank"
+   class="floating-review-btn">
+   ★
+</a>
+
+<script src="reviews.js"></script>
+
+
 <!-- PRODUCTOS -->
   
   <!--
@@ -206,6 +245,3 @@
 
 </body>
 </html>
-
-
-
